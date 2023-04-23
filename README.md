@@ -1,83 +1,50 @@
-# electron-vite-react
+#  Dashboard-electron-vite-expresss-boilerplate
 
-[![awesome-vite](https://awesome.re/mentioned-badge.svg)](https://github.com/vitejs/awesome-vite)
-![GitHub stars](https://img.shields.io/github/stars/caoxiemeihao/vite-react-electron?color=fa6470)
-![GitHub issues](https://img.shields.io/github/issues/caoxiemeihao/vite-react-electron?color=d8b22d)
-![GitHub license](https://img.shields.io/github/license/caoxiemeihao/vite-react-electron)
-[![Required Node.JS >= 14.18.0 || >=16.0.0](https://img.shields.io/static/v1?label=node&message=14.18.0%20||%20%3E=16.0.0&logo=node.js&color=3f893e)](https://nodejs.org/about/releases)
+An Electron application with React, Material Tailwind React, and Express.
 
-English | [简体中文](README.zh-CN.md)
+### Install
 
-## 👀 Overview
+To install the necessary dependencies, run the following command:
 
-📦 Ready out of the box  
-🎯 Based on the official [template-react-ts](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts), project structure will be familiar to you  
-🌱 Easily extendable and customizable  
-💪 Supports Node.js API in the renderer process  
-🔩 Supports C/C++ native addons  
-🐞 Debugger configuration included  
-🖥 Easy to implement multiple windows  
-
-## 🛫 Quick start
-
-```sh
-npm create electron-vite
+```bash
+$ npm install
 ```
 
-![electron-vite-react.gif](/public/electron-vite-react.gif)
+### Development
 
-## 🐞 Debug
+To start the application in development mode, run the following command:
 
-![electron-vite-react-debug.gif](/public/electron-vite-react-debug.gif)
-
-## 📂 Directory structure
-
-Familiar React application structure, just with `electron` folder on the top :wink:  
-*Files in this folder will be separated from your React application and built into `dist-electron`*  
-
-```tree
-├── electron                                 Electron-related code
-│   ├── main                                 Main-process source code
-│   └── preload                              Preload-scripts source code
-│
-├── release                                  Generated after production build, contains executables
-│   └── {version}
-│       ├── {os}-{os_arch}                   Contains unpacked application executable
-│       └── {app_name}_{version}.{ext}       Installer for the application
-│
-├── public                                   Static assets
-└── src                                      Renderer source code, your React application
+```bash
+$ npm run dev
 ```
 
-<!--
-## 🚨 Be aware
+### Build
 
-This template integrates Node.js API to the renderer process by default. If you want to follow **Electron Security Concerns** you might want to disable this feature. You will have to expose needed API by yourself.  
+To build the application for distribution, use one of the following commands depending on your target platform:
 
-To get started, remove the option as shown below. This will [modify the Vite configuration and disable this feature](https://github.com/electron-vite/vite-plugin-electron-renderer#config-presets-opinionated).
-
-```diff
-# vite.config.ts
-
-export default {
-  plugins: [
-    ...
--   // Use Node.js API in the Renderer-process
--   renderer({
--     nodeIntegration: true,
--   }),
-    ...
-  ],
-}
+```bash
+$ npm run build
 ```
--->
 
-## 🔧 Additional features
+## Usage
 
-1. electron-updater 👉 [see docs](src/components/update/README.md)
-1. playwright
+Once the application is running, you can use the interface to view your data. There are various components available for displaying data, such as tables, charts, and cards.
 
-## ❔ FAQ
+To retrieve data for the application, you can use the included server. The server provides a RESTful API for retrieving data from a database or other source. To start the server, use the command `npm run server`.
 
-- [C/C++ addons, Node.js modules - Pre-Bundling](https://github.com/electron-vite/vite-plugin-electron-renderer#dependency-pre-bundling)
-- [dependencies vs devDependencies](https://github.com/electron-vite/vite-plugin-electron-renderer#dependencies-vs-devdependencies)
+(The server is automatically started when the program is executed because it is called in the 'main.js' file.)
+
+## Important
+
+In order for the application to be able to locate images, they must be placed in the "public" folder. It is important to note that the file path must be written with a "." before the "/", for example "./img/icon.svg" instead of "/img/icon.svg".
+
+Another important point to consider is that this project uses React Router DOM, which does not work well with Electron because Electron is based on a file system rather than a traditional internet URL system. Therefore, it is recommended to use "HashRouter" instead of "BrowserRouter" ([see link](https://stackoverflow.com/questions/36505404/how-to-use-react-router-with-electron)).
+
+## Dependencies
+
+This application depends on two projects:
+ - [The electron project](https://github.com/electron-vite/electron-vite-react)
+ - [The material-tailwind-react project](https://github.com/creativetimofficial/material-tailwind-dashboard-react)
+## License
+
+This application is licensed under the MIT License. See the `LICENSE` file for more information.
